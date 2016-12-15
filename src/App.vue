@@ -26,4 +26,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+  body {
+    font-family: 'Avenir', "微軟正黑體", Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+  }
+  .container {
+    width: 768px;
+    margin: 0 auto;
+  }
+</style>
