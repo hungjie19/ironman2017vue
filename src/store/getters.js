@@ -1,1 +1,5 @@
-export const getCount = state => { return state.count }
+// count
+export const getCount = state => state.count;
+
+// todo 
+export const getTodos = state => state.todos;
