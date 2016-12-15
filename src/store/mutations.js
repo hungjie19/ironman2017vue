@@ -47,4 +47,31 @@ export const mutations = {
   // 流水 key +1
     todoKey++;
   },
+
+  // 改變狀態
+  [types.TOGGLE_TODO] (state, key) {
+    for(var i in state.todos){
+      var item = state.todos[i];
+      // 利用 key 找到 todo, 把狀態反向
+      // gatter 就會撈取新的狀態，反映到 Vue 上面
+      if ( item.key === key){
+        item.done = !item.done;
+        console.log('TOGGLE_TODO:', item.content, 'done?', item.done);
+        break;
+      }
+    }
+  },
+
+  // 刪除
+  [types.DELETE_TODO] (state, key) {
+    for(var i in state.todos){
+      var item = state.todos[i];
+      if ( item.key === key){
+        console.log('DELETE_TODO:', item.content, ', index?', i);
+        // 刪除，單純將 todo Array 從 splice 出去。
+        state.todos.splice(i, 1);
+        break
+      }
+    }
+  },
 }
