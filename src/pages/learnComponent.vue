@@ -1,6 +1,17 @@
 <template>
   <div id="jumbotron">
-    <nav-bar/>
+    <nav-bar>
+      <!-- 這段 code 將會被插入在上面我們設計的地方（ nav 右邊）  -->
+      <div slot="right">
+        <div class="form-group">
+          <input type="text" placeholder="Email" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Sign in</button>
+      </div>
+    </nav-bar>
     <jumbotron />
     <container :list="list"/>
   </div>

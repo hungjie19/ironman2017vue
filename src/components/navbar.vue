@@ -11,15 +11,14 @@
         <a class="navbar-brand" href="#">ironman 2017 vue & vuex 2.0</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
+
+        <!-- 設計為這段 slot 會插在 nav 的右邊（因為 css 設計） -->
         <form class="navbar-form navbar-right">
-          <div class="form-group">
-            <input type="text" placeholder="Email" class="form-control">
-          </div>
-          <div class="form-group">
-            <input type="password" placeholder="Password" class="form-control">
-          </div>
-          <button type="submit" class="btn btn-success">Sign in</button>
+          <slot name='right'>
+            <!-- 包裹在 slot 裡面的這段 code 是預設 -->    
+          </slot>
         </form>
+
       </div><!--/.navbar-collapse -->
     </div>
   </nav>
