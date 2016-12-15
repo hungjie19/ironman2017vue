@@ -13,6 +13,10 @@ export const state = {
   ]
 }
 
+// 這邊簡單做一個 todo 的流水 key
+// 預設值是 todos 的長度
+let todoKey = state.todos.length;
+
 // mutations
 export const mutations = {
   [types.INCREASE] (state, num) {
@@ -29,5 +33,18 @@ export const mutations = {
     // 歸零，就將 state 設定為 0 囉!
     state.count = 0;
     console.log('COUNT_RESET - state?', state.count);
+  },
+
+  // todo
+  [types.ADD_TODO] (state, newTodo) {
+    // todos 是一個 Array 所以 push 一個同結構的 Object
+    state.todos.push({
+      key: todoKey, // 流水 key
+      content: newTodo, // 新 todo 的內容
+      done: false // 預設當然是未做完
+    });
+  
+  // 流水 key +1
+    todoKey++;
   },
 }
