@@ -28,7 +28,7 @@ export const actionCountReset = ({ commit }) => {
 // todo
 export const addTodo = ({ commit }, newTodo) => {
   // 直接將 newTodo 傳遞給 mutation
-  commit(types.ADD_TODO, newTodo);
+  commit(types.CREATE_TODO, newTodo);
 }
 
 export const toggleTodo = ({ commit }, key) => {
@@ -37,4 +37,9 @@ export const toggleTodo = ({ commit }, key) => {
 
 export const deleteTodo = ({ commit }, key) => {
   commit(types.DELETE_TODO, key);
+}
+
+export const updateTodo = ({ commit }, obj) => {
+  console.log('updateTodo', obj);
+  commit(types.UPDATE_TODO, obj);
 }

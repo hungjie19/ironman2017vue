@@ -21,32 +21,18 @@
     <div class="row">
       <div class="col-md-6">
         <h2>Todo List:</h2>
-        <li v-for="(item, index) in todoList">
-          <label>
-            <!-- 
-              改變狀態
-              套用 vuex 因此不能使用 v-model 做雙向綁定，會報錯誤
-              1. 將 list 的 value bind 到 input checked 屬性上，改變樣式。
-              2. onchange 事件發出 action 帶入 key
-             -->
-            <input 
-              type="checkbox"
-              :checked="item.done"
-              @change="toggleTodo( item.key )">
-              {{ item.content }}
-          </label>
-          <!-- 
-            刪除按鈕
-            onclick 事件發出 action 帶入 key
+        <ol>
+          <!--
+            因為需要切換更新模式，可是這個值不需要紀錄在 vuex 裡面
+            所以包裝成一個 component 利用裡面封閉的 data 去紀錄，
+            這 component 只需要接收父層傳遞 todo object 既可。
           -->
-          <button class="btn btn-xs btn-danger" @click="deleteTodo( item.key )">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-          </button>
-        </li>
+          <todoItem v-for="(item, index) in todoList" :item="item" />
+        </ol>
       </div>
       <div class="col-md-6">
         <h2>Done List:</h2>
-        <ul >
+        <ol >
           <li v-for="(item, index) in doneList">
             <label>
               <input 
@@ -56,16 +42,20 @@
                 {{ item.content }}
             </label>
           </li>
-        </ul>
+        </ol>
       </div>
     </div><!-- end row -->
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
+import todoItem from '../components/todo-item.vue';
 
 export default {
+  components: {
+    todoItem
+  },
   data () {
     return {
       newTodo: ''

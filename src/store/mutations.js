@@ -36,7 +36,7 @@ export const mutations = {
   },
 
   // todo
-  [types.ADD_TODO] (state, newTodo) {
+  [types.CREATE_TODO] (state, newTodo) {
     // todos 是一個 Array 所以 push 一個同結構的 Object
     state.todos.push({
       key: todoKey, // 流水 key
@@ -70,7 +70,19 @@ export const mutations = {
         console.log('DELETE_TODO:', item.content, ', index?', i);
         // 刪除，單純將 todo Array 從 splice 出去。
         state.todos.splice(i, 1);
-        break
+        break;
+      }
+    }
+  },
+  
+  // 更新
+  [types.UPDATE_TODO] (state, obj) {
+    for(var i in state.todos){
+      var item = state.todos[i];
+      if ( item.key === obj.key){
+        console.log('UPDATE_TODO:', item.content, ' to →', obj.update);
+        state.todos[ i ].content = obj.update;
+        break;
       }
     }
   },

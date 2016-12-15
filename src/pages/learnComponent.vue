@@ -55,7 +55,6 @@ export default {
 <style>
   /* Move down content because we have a fixed navbar that is 50px tall */
   #jumbotron {
-    padding-top: 50px;
     padding-bottom: 20px;
   }
 </style>
