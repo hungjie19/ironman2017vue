@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>vue & vuex Todo List example</h1>
+    <h1>vue & vuex 2.0 Todo List example</h1>
     <hr>
     <div class="row">
       <div class="input-group col-md-4">
@@ -17,30 +17,18 @@
         </span>
       </div>
     </div>
-    <!-- 左右兩個欄位分別存放 todo / done -->
     <div class="row">
       <div class="col-md-6">
         <h2>Todo List:</h2>
         <ol>
-          <!--
-            因為需要切換更新模式，可是這個值不需要紀錄在 vuex 裡面
-            所以包裝成一個 component 利用裡面封閉的 data 去紀錄，
-            這 component 只需要接收父層傳遞 todo object 既可。
-          -->
-          <todoItem v-for="(item, index) in todoList" :item="item" />
+           <todoItem v-for="(item, index) in todoList" :item="item" />
         </ol>
       </div>
       <div class="col-md-6">
         <h2>Done List:</h2>
         <ol >
           <li v-for="(item, index) in doneList">
-            <label>
-              <input 
-                type="checkbox"
-                :checked="item.done"
-                @change="toggleTodo( item.key )">
-                {{ item.content }}
-            </label>
+            <custom-checkbox :item="item" @toggleTodo="toggleTodo" />
           </li>
         </ol>
       </div>
@@ -51,14 +39,17 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import todoItem from '../components/todo-item.vue';
+import customCheckbox from '../components/customCheckbox.vue';
 
 export default {
   components: {
-    todoItem
+    todoItem,
+    customCheckbox
   },
   data () {
     return {
-      newTodo: ''
+      newTodo: '',
+      check: false
     }
   },
   computed: mapGetters({
@@ -71,6 +62,9 @@ export default {
         'deleteTodo',
     ]),
     actionAddTodo () {
+      if( this.newTodo === '' ){
+        return;
+      }
       this.$store.dispatch('addTodo', this.newTodo);
       this.newTodo = '';
     }

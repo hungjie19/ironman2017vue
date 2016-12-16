@@ -31,8 +31,9 @@ export const addTodo = ({ commit }, newTodo) => {
   commit(types.CREATE_TODO, newTodo);
 }
 
-export const toggleTodo = ({ commit }, key) => {
-  commit(types.TOGGLE_TODO, key);
+export const toggleTodo = ({ commit }, obj) => {
+  console.log('toggleTodo', obj);
+  commit(types.TOGGLE_TODO, obj);
 }
 
 export const deleteTodo = ({ commit }, key) => {

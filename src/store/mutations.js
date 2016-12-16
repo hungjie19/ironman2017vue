@@ -49,14 +49,12 @@ export const mutations = {
   },
 
   // 改變狀態
-  [types.TOGGLE_TODO] (state, key) {
+  [types.TOGGLE_TODO] (state, obj) {
     for(var i in state.todos){
       var item = state.todos[i];
-      // 利用 key 找到 todo, 把狀態反向
-      // gatter 就會撈取新的狀態，反映到 Vue 上面
-      if ( item.key === key){
-        item.done = !item.done;
-        console.log('TOGGLE_TODO:', item.content, 'done?', item.done);
+      if ( item.key === obj.key){
+        item.done = obj.checked; //直接使用 chenkbox $emit 的 value
+        console.log('TOGGLE_TODO:', item.content, '| obj.checked?', obj.checked, '| done?', item.done);
         break;
       }
     }
