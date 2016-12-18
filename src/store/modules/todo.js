@@ -1,9 +1,11 @@
-import * as types from './mutations_type.js'
-import Vue from 'vue'
+const types = {
+  CREATE_TODO: 'todo/CREATE_TODO',
+  TOGGLE_TODO: 'todo/TOGGLE_TODO',
+  DELETE_TODO: 'todo/DELETE_TODO',
+  UPDATE_TODO: 'todo/UPDATE_TODO',
+}
 
-// state
-export const state = {
-  count: 0,
+const state = {
   todos: [
     { key: 0, content: 'vue.js 2.0', done: true },
     { key: 1, content: 'vuex 2.0', done: false },
@@ -13,29 +15,41 @@ export const state = {
   ]
 }
 
-// 這邊簡單做一個 todo 的流水 key
-// 預設值是 todos 的長度
+const getters = {
+  getDone (state) {
+    return state.todos.filter((item) => {
+      return item.done;
+    });
+  },
+  getTodo (state) {
+    return state.todos.filter((item) => {
+      return !item.done;
+    });
+  }
+}
+
+const actions = {
+  addTodo ({ commit }, newTodo) {
+    commit(types.CREATE_TODO, newTodo);
+  },
+  toggleTodo ({ commit }, obj) {
+    console.log('toggleTodo', obj);
+    commit(types.TOGGLE_TODO, obj);
+  },
+  deleteTodo ({ commit }, key) {
+    commit(types.DELETE_TODO, key);
+  },
+  updateTodo ({ commit }, obj) {
+    console.log('updateTodo', obj);
+    commit(types.UPDATE_TODO, obj);
+  },
+}
+
+// 流水 key
 let todoKey = state.todos.length;
 
-// mutations
-export const mutations = {
-  [types.INCREASE] (state, num) {
-    // 第二個參數是接收 commit 傳遞的值: num
-    // 計算邏輯，改變 state
-    state.count += num;
-    console.log('INCREASE', num, 'state?', state.count);
-  },
-  [types.DECREASE] (state, num) {
-    state.count -= num;
-    console.log('DECREASE', num, 'state?', state.count);
-  },
-  [types.COUNT_RESET] (state) {
-    // 歸零，就將 state 設定為 0 囉!
-    state.count = 0;
-    console.log('COUNT_RESET - state?', state.count);
-  },
-
-  // todo
+const mutations = {
+  // 新增
   [types.CREATE_TODO] (state, newTodo) {
     // todos 是一個 Array 所以 push 一個同結構的 Object
     state.todos.push({
@@ -44,7 +58,7 @@ export const mutations = {
       done: false // 預設當然是未做完
     });
   
-  // 流水 key +1
+    // 流水 key +1
     todoKey++;
   },
 
@@ -84,4 +98,11 @@ export const mutations = {
       }
     }
   },
+}
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations
 }
