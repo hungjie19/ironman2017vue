@@ -14,6 +14,7 @@ import CtoF from './pages/CtoF.vue';
 import learnComponent from './pages/learnComponent.vue';
 import count from './pages/count.vue';
 import todo from './pages/todo.vue';
+import shop from './pages/shop.vue';
 
 const router = new VueRouter({
   // 使用 HTML 5 模式（沒有 hash, ex: #/hello）
@@ -46,9 +47,14 @@ const router = new VueRouter({
       name: 'todo',
       component: todo
     },
+    {
+      path: '/shop',
+      name: 'shop',
+      component: shop
+    },
     // 當 url path 不符合 router 表的時候，預設轉址到
     // 順序一定要最後面
-    { path: '/*', redirect: '/todo' }
+    { path: '/*', redirect: '/shop' }
   ]
 });
 

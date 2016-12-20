@@ -33,6 +33,7 @@
             <li><router-link :to="{name: 'learnComponent'}">Component</router-link></li>
             <li><router-link :to="{name: 'count'}">Count</router-link></li>
             <li><router-link :to="{name: 'todo'}">Todo</router-link></li>
+            <li><router-link :to="{name: 'shop'}">Shop</router-link></li>
           </ul>
           <slot name="navbar-form"></slot>
           <slot name="navbar-right"></slot>
