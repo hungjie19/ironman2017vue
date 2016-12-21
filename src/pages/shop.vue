@@ -3,10 +3,10 @@
   <!-- Top menu -->
   <div class="w3-white w3-xlarge w3-padding-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-right">
-      <a href="#">
+      <router-link :to="{name: 'cart'}">
         <!-- 顯示購物車總產品數 -->
         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> {{ cartTotal }}</span>
-      </a>
+      </router-link>
     </div>
     <div class="w3-center">Shop</div>
   </div>
