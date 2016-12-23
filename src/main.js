@@ -16,6 +16,7 @@ import count from './pages/count.vue';
 import todo from './pages/todo.vue';
 import shop from './pages/shop.vue';
 import cart from './pages/cart.vue';
+import open1999 from './pages/open1999.vue';
 
 const router = new VueRouter({
   // 使用 HTML 5 模式（沒有 hash, ex: #/hello）
@@ -58,9 +59,14 @@ const router = new VueRouter({
       name: 'cart',
       component: cart
     },
+    {
+      path: '/open1999',
+      name: 'open1999',
+      component: open1999
+    },
     // 當 url path 不符合 router 表的時候，預設轉址到
     // 順序一定要最後面
-    { path: '/*', redirect: '/shop' }
+    { path: '/*', redirect: '/open1999' }
   ]
 });
 
