@@ -38,6 +38,7 @@
             <li><router-link :to="{name: 'shop'}">Shop</router-link></li>
             <li><router-link :to="{name: 'cart'}">Cart</router-link></li>
             <li><router-link :to="{name: 'open1999'}">open1999</router-link></li>
+            <li><router-link :to="{name: 'login'}">login</router-link></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
