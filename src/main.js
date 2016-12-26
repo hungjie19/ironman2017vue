@@ -28,47 +28,56 @@ const router = new VueRouter({
     {
       path: '/hello',
       name: 'hello',
-      component: Hello
+      component: Hello,
+      meta: { requiresAuth: true },
     },
     {
       path: '/c2f',
       name: 'c2f',
-      component: CtoF
+      component: CtoF,
+      meta: { requiresAuth: true },
     },
     {
       path: '/learnComponent',
       name: 'learnComponent',
-      component: learnComponent
+      component: learnComponent,
+      meta: { requiresAuth: true },
     },
     {
       path: '/count',
       name: 'count',
-      component: count
+      component: count,
+      meta: { requiresAuth: true },
     },
     {
       path: '/todo',
       name: 'todo',
-      component: todo
+      component: todo,
+      meta: { requiresAuth: true },
     },
     {
       path: '/shop',
       name: 'shop',
-      component: shop
+      component: shop,
+      meta: { requiresAuth: true },
     },
     {
       path: '/cart',
       name: 'cart',
-      component: cart
+      component: cart,
+      meta: { requiresAuth: false },
     },
     {
       path: '/open1999',
       name: 'open1999',
-      component: open1999
+      component: open1999,
+      meta: { requiresAuth: true },
     },
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: login,
+      meta: { requiresAuth: false },
     },
     // 當 url path 不符合 router 表的時候，預設轉址到
     // 順序一定要最後面
@@ -76,6 +85,26 @@ const router = new VueRouter({
   ]
 });
 
+// 頁面轉跳驗證
+router.beforeEach((to, from, next) => {
+  // 如果 router 轉跳的頁面需要驗證 requiresAuth: true
+  console.log('to=', to.fullPath, '| from=', from.fullPath);
+  if (to.matched.some(record => {
+    console.log(record.name, record.meta.requiresAuth);
+    return record.meta.requiresAuth;
+  })) {
+    // 如果沒有 token 
+    console.log('token?', store.state.token);
+    if (store.state.token === '') {
+      // 轉跳到 login page
+      next({ path: '/login' });
+    } else {
+      next(); // 往下繼續執行
+    }
+  } else {
+    next(); // 往下繼續執行
+  }
+});
 
 new Vue({
   el: '#app',

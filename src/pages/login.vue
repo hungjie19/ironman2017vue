@@ -59,6 +59,10 @@ export default {
         console.log('error get Promise reject!');
       });
     }
+  },
+  created () {
+    // 在 vue 調用 router
+    console.log('vue created:', this.$route.matched[0]);
   }
 }
 </script>
