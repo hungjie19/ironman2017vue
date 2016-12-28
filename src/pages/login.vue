@@ -12,13 +12,26 @@
           class="form-control"
           placeholder="Email address" required autofocus />
         <label for="inputPassword" class="sr-only">Password</label>
+        <!-- 
+          2. 在 password input 上面使用 v-toggle-password 帶入 checkbox 的 value
+        -->
         <input
           v-model="password"
+          v-toggle-password="togglePassword"
           @keyup.enter="login"
           type="password"
           id="inputPassword"
           class="form-control"
           placeholder="Password" required />
+        <!-- 1. check box 雙向綁定[布林] -->  
+        <div class="squaredFour" style="margin: 20px 10px;">
+          <input
+            type="checkbox"
+            v-model="togglePassword"
+            id="togglePassword" />
+          <label for="togglePassword" class="checkbox-icon"></label>
+          <label for="togglePassword">顯示密碼</label>
+        </div>
         <button 
           class="btn btn-lg btn-primary btn-block"
           type="submit"
@@ -39,6 +52,7 @@ export default {
     return {
       email: 'vue_vuex2@ironman2017.tw',
       password: '',
+      togglePassword: false,
     }
   },
   methods: {
@@ -105,7 +119,6 @@ export default {
     border-bottom-left-radius: 0;
   }
   .form-signin input[type="password"] {
-    margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }

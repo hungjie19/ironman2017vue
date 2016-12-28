@@ -4,6 +4,10 @@ import './assets/css/bootstrap/stylesheets/_bootstrap.scss';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from './store';
+
+// directive
+import './directive/custom-directive.js';
+
 // init
 Vue.use( VueRouter );
 
