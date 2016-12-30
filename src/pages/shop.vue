@@ -24,7 +24,7 @@
         :class="{ 'w3-grayscale-max': !item.inventory }">
         <img :src="item.image" style="width: 100%;">
         <h3>{{ item.title }}</h3>
-        <h4>${{ item.price }}</h4>
+        <h4>{{ item.price | currency}}</h4>
         <!-- 
           數據驅動 UI
           根據條件變化不同 class

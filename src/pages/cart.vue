@@ -31,7 +31,7 @@
             <hr>
             <h3>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum. Just some random text, Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum. 
             </h3>
-            <h2>${{ recommend.price }}</h2>
+            <h2>{{ recommend.price | currency}}</h2>
             <button 
               class="btn btn-danger"
               @click="addCart( recommend.title )">
@@ -44,7 +44,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading panel-price">總計： <span>${{ total }}</span> 元</div>
+      <div class="panel-heading panel-price">總計： <span>{{ total | currency}}</span> 元</div>
       <table class="table">
         <thead>
           <tr>
@@ -57,7 +57,7 @@
         <tbody>
           <tr v-for="(cart, index) in cartList">
             <td>{{ index + 1 }}</td>
-            <td>{{ cart.price }}</td>
+            <td>{{ cart.price | currency}}</td>
             <td>{{ cart.title }}</td>
             <td>
               <button 

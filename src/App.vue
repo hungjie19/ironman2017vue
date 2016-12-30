@@ -41,6 +41,7 @@
             <li><router-link :to="{name: 'login'}">login</router-link></li>
             <li><router-link :to="{name: 'multiple'}">multiples views</router-link></li>
             <li><router-link :to="{path: '/shop/cart'}">nested routes</router-link></li>
+            <li><router-link :to="{name: 'filter'}">filter</router-link></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

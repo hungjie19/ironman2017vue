@@ -7,6 +7,8 @@ import store from './store';
 
 // directive
 import './directive/custom-directive.js';
+// filter
+import './filters/custom-filter.js';
 
 // init
 Vue.use( VueRouter );
@@ -23,6 +25,7 @@ import shop from './pages/shop.vue';
 import cart from './pages/cart.vue';
 import open1999 from './pages/open1999.vue';
 import login from './pages/login.vue';
+import demoFilter from './pages/demoFilter.vue';
 
 const router = new VueRouter({
   // 使用 HTML 5 模式（沒有 hash, ex: #/hello）
@@ -109,6 +112,12 @@ const router = new VueRouter({
         viewLeft: shop,
         viewRight: cart,
       },
+      meta: { requiresAuth: false },
+    },
+    {
+      path: '/filter',
+      name: 'filter',
+      component: demoFilter,
       meta: { requiresAuth: false },
     },
     // 當 url path 不符合 router 表的時候，預設轉址到
