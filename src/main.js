@@ -3,15 +3,33 @@ import './assets/css/bootstrap/stylesheets/_bootstrap.scss';
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueI18n from 'vue-i18n';
 import store from './store';
+// init
+Vue.use( VueRouter );
+Vue.use( VueI18n );
+
+// i18n
+import en from './i18n/en.json'; // 存放英文翻譯
+import tw from './i18n/tw.json'; // 存放繁體中文翻譯
+
+const locales = {
+  en,
+  tw,
+};
+
+// 初始取得 state 預設值
+// lang 對應的是 locales 的 key 目前有：en, tw
+Vue.config.lang = store.state.lang; // 從 state 獲取預設語言設定。
+
+Object.keys(locales).forEach(function (lang) {
+  Vue.locale(lang, locales[lang]);
+});
 
 // directive
 import './directive/custom-directive.js';
 // filter
 import './filters/custom-filter.js';
-
-// init
-Vue.use( VueRouter );
 
 // root page
 import App from './App.vue';
@@ -122,7 +140,7 @@ const router = new VueRouter({
     },
     // 當 url path 不符合 router 表的時候，預設轉址到
     // 順序一定要最後面
-    { path: '/*', redirect: '/multiple' }
+    { path: '/*', redirect: '/login' }
   ]
 });
 
